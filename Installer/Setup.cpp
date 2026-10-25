@@ -13,6 +13,7 @@
 #include <stdexcept>
 #include <set>
 #include <algorithm>
+#include <string_view>
 namespace fs=std::filesystem;
 namespace {
 constexpr wchar_t Service[]=L"TitanStorageFlightRecorder";
@@ -85,6 +86,37 @@ struct Temporary {
 };
 bool Field(HINF inf,const wchar_t* section,const wchar_t* key,DWORD index,const wchar_t* expected){INFCONTEXT line{};wchar_t value[1024]{};return SetupFindFirstLineW(inf,section,key,&line)&&SetupGetStringFieldW(&line,index,value,1024,nullptr)&&!_wcsicmp(value,expected);}
 bool Number(HINF inf,const wchar_t* section,const wchar_t* key,DWORD index,int expected){INFCONTEXT line{};int n=0;return SetupFindFirstLineW(inf,section,key,&line)&&SetupGetIntField(&line,index,&n)&&n==expected;}
+bool CanonicalServiceBinary(const fs::path& path){
+ // SetupAPI expands DIRID 13 differently for source and published primitive INFs
+ // (including system32\\unknown). Validate the exact raw directive, not that path.
+ HANDLE file=CreateFileW(path.c_str(),GENERIC_READ,FILE_SHARE_READ,nullptr,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,nullptr);if(file==INVALID_HANDLE_VALUE)return false;
+ struct File{HANDLE h;~File(){CloseHandle(h);}} close{file};LARGE_INTEGER size{};
+ if(!GetFileSizeEx(file,&size)||size.QuadPart<=0||size.QuadPart>262144)return false;
+ std::vector<BYTE> bytes(static_cast<size_t>(size.QuadPart));DWORD read=0;
+ if(!ReadFile(file,bytes.data(),static_cast<DWORD>(bytes.size()),&read,nullptr)||read!=bytes.size())return false;
+ std::wstring text;text.reserve(bytes.size());
+ if(bytes.size()>=2&&bytes[0]==0xff&&bytes[1]==0xfe){
+  if(bytes.size()%2)return false;
+  for(size_t i=2;i<bytes.size();i+=2){const wchar_t c=static_cast<wchar_t>(bytes[i]|(static_cast<unsigned>(bytes[i+1])<<8));if(!c)return false;text.push_back(c);}
+ }else{
+  const size_t start=bytes.size()>=3&&bytes[0]==0xef&&bytes[1]==0xbb&&bytes[2]==0xbf?3:0;
+  for(size_t i=start;i<bytes.size();++i){if(!bytes[i])return false;text.push_back(bytes[i]);}
+ }
+ auto trim=[](std::wstring_view value){const auto start=value.find_first_not_of(L" \t\r");if(start==value.npos)return std::wstring_view{};return value.substr(start,value.find_last_not_of(L" \t\r")-start+1);};
+ auto equal=[](std::wstring_view a,std::wstring_view b){return a.size()==b.size()&&_wcsnicmp(a.data(),b.data(),a.size())==0;};
+ bool inService=false;unsigned sections=0,binaries=0;
+ for(size_t offset=0;offset<text.size();){
+  const auto end=text.find(L'\n',offset);auto line=trim(std::wstring_view(text).substr(offset,end==text.npos?text.size()-offset:end-offset));offset=end==text.npos?text.size():end+1;
+  // Restrict this one directive to its single canonical, uncommented form.
+  if(line.empty()||line.front()==L';')continue;
+  if(line.front()==L'['){inService=equal(line,L"[Service]");if(inService&&++sections!=1)return false;continue;}
+  if(!inService)continue;const auto separator=line.find(L'=');if(separator==line.npos)continue;
+  if(equal(trim(line.substr(0,separator)),L"ServiceBinary")){
+   if(++binaries!=1||!equal(trim(line.substr(separator+1)),L"%13%\\TitanStorageFlightRecorder.sys"))return false;
+  }
+ }
+ return sections==1&&binaries==1;
+}
 bool OwnPackage(const fs::path& path){
  GUID cls{};wchar_t name[128]{};if(!SetupDiGetINFClassW(path.c_str(),&cls,name,128,nullptr)||!IsEqualGUID(cls,GUID_DEVCLASS_SYSTEM))return false;
  HINF handle=SetupOpenInfFileW(path.c_str(),nullptr,INF_STYLE_WIN4,nullptr);if(handle==INVALID_HANDLE_VALUE)return false;struct Inf{HINF h;~Inf(){SetupCloseInfFile(h);}} inf{handle};
@@ -95,7 +127,7 @@ bool OwnPackage(const fs::path& path){
   SetupGetLineCountW(handle,L"Manufacturer")==-1&&Field(handle,L"DefaultInstall.NTamd64",L"CopyFiles",1,L"DriverFiles")&&
   SetupGetLineCountW(handle,L"DriverFiles")==1&&Field(handle,L"DriverFiles",nullptr,1,L"TitanStorageFlightRecorder.sys")&&Number(handle,L"DestinationDirs",L"DriverFiles",1,13)&&
   Field(handle,L"DefaultInstall.NTamd64.Services",L"AddService",1,Service)&&Field(handle,L"DefaultInstall.NTamd64.Services",L"AddService",3,L"Service")&&
-  Number(handle,L"Service",L"ServiceType",1,SERVICE_KERNEL_DRIVER)&&Number(handle,L"Service",L"StartType",1,SERVICE_DEMAND_START)&&Field(handle,L"Service",L"ServiceBinary",1,L".\\TitanStorageFlightRecorder.sys");
+  Number(handle,L"Service",L"ServiceType",1,SERVICE_KERNEL_DRIVER)&&Number(handle,L"Service",L"StartType",1,SERVICE_DEMAND_START)&&CanonicalServiceBinary(path);
 }
 std::vector<fs::path> Packages(){
  wchar_t windows[MAX_PATH]{};DWORD n=GetWindowsDirectoryW(windows,MAX_PATH);Require(n>0&&n<MAX_PATH);fs::path directory=fs::path(windows)/L"INF";std::vector<fs::path> result;
@@ -134,7 +166,7 @@ Setup::Result Association(const std::wstring& instance,bool adding){
  if(adding){
   bool found=false;for(const auto& disk:StorageRecorder::Disks())if(!_wcsicmp(disk.instance.c_str(),instance.c_str())){found=true;if(!disk.eligible)return {ERROR_ACCESS_DENIED,false,disk.reason};}
   if(!found)return {ERROR_NOT_FOUND,false,L"Exact present scratch disk not found. Nothing was changed."};
-  if(!TrustedInstalled())return {ERROR_INVALID_IMAGE_HASH,false,L"Install this product's trusted Microsoft-signed package before attaching a disk. Source-only preview setup has no installable driver."};
+  if(!TrustedInstalled())return {ERROR_INVALID_IMAGE_HASH,false,L"No matching installed package passed product identity, Microsoft catalog and INF/SYS membership checks. Run Install package with the matching signed setup, then retry attachment."};
  }
  Selected selected(instance);auto original=Filters(selected.set.h,selected.data);auto changed=original;
  changed.erase(std::remove_if(changed.begin(),changed.end(),[](const std::wstring& f){return !_wcsicmp(f.c_str(),Service);}),changed.end());if(adding)changed.push_back(Service);

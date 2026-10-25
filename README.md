@@ -4,7 +4,7 @@
 
 Built for virtual-storage QA, raw block-workload regression tests and OEM diagnostic integrations. The private KMDF upper filter timestamps read and write requests at its own dispatch/completion boundary. The native Windows viewer displays completions, in-flight counts, errors and overwritten-log counts; explicitly export the visible metadata to CSV.
 
-**App/SDK engineering preview for Windows x64.** Microsoft driver signing and production qualification are pending. Public downloads contain the native application, CLI, SDK, example and installer sources. An unsigned driver or a setup executable without a signed payload is not distributed as a usable public installation.
+**Microsoft-signed evaluation bundle for Windows x64.** Application 0.1.1 includes the Microsoft-signed driver 0.1.0.0 in self-contained UI/console installers, the native viewer, CLI, two-file C++ SDK and example sources. Installation, attachment, recording, detachment and removal passed isolated Windows 10 x64 tests, normally and under Driver Verifier; see [validation](docs/VALIDATION.md) for the tested scope. The recorder remains limited to the explicitly selected synthetic scratch disk described below.
 
 ![Native application with explicitly labelled synthetic preview data](docs/app.png)
 
@@ -24,14 +24,14 @@ The recorder does not inspect disk contents, collect file paths, attribute proce
 
 ## Install and use
 
-1. Download and extract the complete x64 ZIP from [Releases](https://github.com/titanfyre/Storage-IO-Flight-Recorder/releases).
-2. For an offline tour, run `StorageRecorderApp.exe --preview`. Its synthetic values are labelled and do not open the recorder or any disk.
-3. Once the Microsoft-signed evaluation bundle is available, run `StorageRecorderSetup.exe` as administrator and choose **Install package**. This installs only the primitive driver package; no disk is automatically attached.
-4. Install a separately signed **Virtual Storage Fault Lab** disk, keep it unpartitioned, explicitly select it, choose **Attach selected**, and restart Windows when requested. Existing per-device filters are preserved. Setup does not restart disks or Windows automatically. Close other device installers while editing associations; a detected concurrent change is retained and reported instead of overwritten.
-5. Open `StorageRecorderApp.exe` as administrator, choose the matching attached PDO and select **Start recording**. Generate the raw workload using your own authorized QA tool. The viewer itself never generates disk reads/writes.
-6. Stop recording before device maintenance. **Detach selected** removes only the recorder association. Restart when requested. Uninstall removes the product's associations first; if a restart is needed, run Uninstall again afterwards to remove the unused package.
+1. Download and extract the complete x64 ZIP from [Releases](https://github.com/titanfyre/Storage-IO-Flight-Recorder/releases). Release 0.1.1 contains both recorder setup executables and the matching signed scratch-disk installers under `Dependencies/Virtual-Storage-Fault-Lab`.
+2. Run `Dependencies/Virtual-Storage-Fault-Lab/StorageFaultLabSetup.exe` as administrator and install its **64 MiB virtual RAM disk**. Keep this disposable disk unpartitioned; do not format it. It starts with fault injection disabled. See [Virtual Storage Fault Lab](https://github.com/titanfyre/Virtual-Storage-Fault-Lab) for the disk's API and operating limits.
+3. Run `StorageRecorderSetup.exe` as administrator and choose **Install package**. This installs only the recorder's primitive driver package; no disk is attached automatically.
+4. In recorder setup, explicitly select the **Titan Storage Fault Lab** disk and choose **Attach selected**. Restart Windows when requested. Existing per-device filters are preserved. Setup never restarts a disk or Windows automatically. Close other device installers while editing associations; a detected concurrent change is retained and reported instead of overwritten.
+5. Open `StorageRecorderApp.exe` as administrator, choose the matching attached PDO and select **Start recording**. Generate a raw workload using your own authorized QA tool. The viewer itself never generates disk reads/writes. `StorageRecorderApp.exe --preview` provides a separately labelled offline tour without opening any disk.
+6. Stop recording before device maintenance. **Detach selected** removes only the recorder association. Restart when requested. **Uninstall** removes the product's associations first; if a restart is needed, run Uninstall again afterwards to remove the unused recorder package. The scratch-disk dependency has its own uninstall operation.
 
-Console setup offers `/install`, `/attach "exact DiskDrive instance"`, `/detach "exact DiskDrive instance"`, `/status` and `/uninstall`. A supplied signed installer verifies its Microsoft production catalog, INF/SYS membership and exact product identity before installation or attachment. Source-only installer builds have no embedded signed package. Never disable production security to load a preview.
+Console setup offers `/install`, `/attach "exact DiskDrive instance"`, `/detach "exact DiskDrive instance"`, `/status` and `/uninstall`. Both recorder setup executables contain the same signed package and verify its Microsoft production catalog, INF/SYS membership and exact product identity before installation or attachment. Exit code **3010** requests a manual restart; exit code **0** means that operation completed without a requested restart. Source builds require a separately supplied opaque signed package to create installable setup executables. Neither setup changes test-signing, Secure Boot or unrelated packages.
 
 ```powershell
 StorageRecorderCLI.exe --disks
@@ -84,12 +84,12 @@ Visual Studio 2022 Desktop C++, CMake and a Windows SDK are required. No WDK or 
 .\Build.ps1 -DriverPackageDirectory C:\Signed\TitanStorageFlightRecorder
 ```
 
-Outputs are under `obj/Build/bin/Release`. Offline tests exercise protocol validation and one million reproducible malformed-record cases without opening a disk or loading a driver. The kernel source remains private; driver signing and runtime qualification are separate from compiling the public app.
+Outputs are under `obj/Build/bin/Release`. Offline tests exercise protocol validation and one million reproducible malformed-record cases without opening a disk or loading a driver. The kernel source remains private. The release installers contain the verified signed return; building the public app alone does not generate that driver. Live signed-package qualification is reported separately in [validation](docs/VALIDATION.md).
 
 ## OEM integration and responsible use
 
 For **paid scoped QA/integration pilots, OEM redistribution rights, a branded driver package or Windows compatibility/support**, add **`titancsa` on Discord**. Bring a reproducible scratch-disk workload, target Windows builds and intended deployment volume. Acceptance tests and supported configurations are agreed before production delivery.
 
-Public app/SDK/example/installer sources use the [MIT license](LICENSE). Kernel binary evaluation and production redistribution have separate terms. This preview does not implement an enforced timer, online activation, or a payment system. Microsoft signing alone is not WHQL certification, product endorsement or evidence of universal reliability.
+Public app/SDK/example/installer sources use the [MIT license](LICENSE). Kernel binary evaluation and production redistribution have separate terms. This evaluation build has no enforced timer, online activation or payment system. Microsoft signing alone is not WHQL certification, product endorsement or evidence of universal reliability.
 
 Use only on systems and disposable test media you own or are authorized to administer. The project is intended for lawful diagnostics and software integration. You remain responsible for your deployment and use; the applicable licenses describe the terms and warranty limitations.

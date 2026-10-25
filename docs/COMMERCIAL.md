@@ -1,6 +1,6 @@
 # OEM storage diagnostics and QA
 
-The initial audience is Windows software teams testing virtual storage adapters, raw block workloads and failure handling. The current preview attaches only to the owned Virtual Storage Fault Lab synthetic disk; physical-disk deployment is not a delivered feature. A fixed, bounded completion record can be embedded into a QA harness without recording customer file contents.
+The initial audience is Windows software teams testing virtual storage adapters, raw block workloads and failure handling. The signed evaluation attaches only to the owned Virtual Storage Fault Lab synthetic disk; physical-disk deployment is not a delivered feature. A fixed, bounded completion record can be embedded into a QA harness without recording customer file contents.
 
 ## Delivery model
 
@@ -9,7 +9,7 @@ The initial audience is Windows software teams testing virtual storage adapters,
 - A qualified production package can carry separate **OEM redistribution/support terms**, a named Windows matrix, update policy and support scope. Annual maintenance covers agreed Windows compatibility work and regression tests.
 - Additional attachment scope, always-on capture, system-disk deployment, per-process attribution and remote fleet collection are separate engineering work; they are not included in this preview.
 
-Contact **titancsa on Discord** with the application, target Windows versions, expected device count and a sample test. There is no automatic checkout or enforced kernel entitlement in the preview. Commercial records in the portfolio administration do not activate this driver. Revenue and demand are hypotheses to validate through pilots, not promises.
+Contact **titancsa on Discord** with the application, target Windows versions, expected device count and a sample test. There is no automatic checkout or enforced kernel entitlement in this evaluation build. Commercial records in the portfolio administration do not activate this driver. Revenue and demand are hypotheses to validate through pilots, not promises.
 
 ## Existing alternatives and positioning
 
