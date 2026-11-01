@@ -2,6 +2,17 @@
 
 **Explain raw scratch-disk I/O completions with bounded metadata, exact NTSTATUS and a small native integration API.**
 
+<!-- full-version-contact:start -->
+> [!IMPORTANT]
+> **Full version and commercial licensing**
+>
+> **Discord username: `titancsa`**
+>
+> Open Discord, choose **Friends > Add Friend**, enter **`titancsa`**, then send a direct message. Mention **Storage I/O Flight Recorder** and ask about the **full / production version, commercial use or OEM redistribution**.
+>
+> Include your intended use and deployment size to discuss pricing, availability and the appropriate licensing / access instructions.
+<!-- full-version-contact:end -->
+
 Built for virtual-storage QA, raw block-workload regression tests and OEM diagnostic integrations. The private KMDF upper filter timestamps read and write requests at its own dispatch/completion boundary. The native Windows viewer displays completions, in-flight counts, errors and overwritten-log counts; explicitly export the visible metadata to CSV.
 
 **Microsoft-signed evaluation bundle for Windows x64.** Application 0.1.1 includes the Microsoft-signed driver 0.1.0.0 in self-contained UI/console installers, the native viewer, CLI, two-file C++ SDK and example sources. Installation, attachment, recording, detachment and removal passed isolated Windows 10 x64 tests, normally and under Driver Verifier; see [validation](docs/VALIDATION.md) for the tested scope. The recorder remains limited to the explicitly selected synthetic scratch disk described below.
