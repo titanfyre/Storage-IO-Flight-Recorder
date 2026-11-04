@@ -1,0 +1,34 @@
+[Version]
+Signature="$WINDOWS NT$"
+Class=System
+ClassGuid={4D36E97D-E325-11CE-BFC1-08002BE10318}
+Provider=%Provider%
+CatalogFile=TitanStorageFlightRecorder.cat
+DriverVer=10/25/2026,0.1.0.0
+PnpLockdown=1
+[DestinationDirs]
+DriverFiles=13
+[SourceDisksNames]
+1=%Disk%
+[SourceDisksFiles]
+TitanStorageFlightRecorder.sys=1
+[DefaultInstall.NTamd64]
+CopyFiles=DriverFiles
+[DriverFiles]
+TitanStorageFlightRecorder.sys
+[DefaultInstall.NTamd64.Services]
+AddService=TitanStorageFlightRecorder,,Service
+[Service]
+DisplayName=%Device%
+ServiceType=1
+StartType=3
+ErrorControl=1
+ServiceBinary=%13%\TitanStorageFlightRecorder.sys
+[DefaultInstall.NTamd64.Wdf]
+KmdfService=TitanStorageFlightRecorder,Wdf
+[Wdf]
+KmdfLibraryVersion=1.31
+[Strings]
+Provider="Titanfyre"
+Device="Titan Storage I/O Flight Recorder"
+Disk="Titan Storage Recorder installation media"

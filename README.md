@@ -86,6 +86,12 @@ Windows ETW/WPR/WPA already provides rich disk tracing and is often the right fi
 
 ## Build
 
+Demo/evaluation driver source is available; see [driver/README.md](driver/README.md) for
+build instructions and separate evaluation-source terms. Those terms apply to
+Titan-authored driver code. Third-party source licenses and existing application/SDK
+licenses remain applicable. Full/commercial implementation and private signing or
+activation material are excluded.
+
 Visual Studio 2022 Desktop C++, CMake and a Windows SDK are required. No WDK or private kernel sources are needed for the public application build.
 
 ```powershell
@@ -95,7 +101,7 @@ Visual Studio 2022 Desktop C++, CMake and a Windows SDK are required. No WDK or 
 .\Build.ps1 -DriverPackageDirectory C:\Signed\TitanStorageFlightRecorder
 ```
 
-Outputs are under `obj/Build/bin/Release`. Offline tests exercise protocol validation and one million reproducible malformed-record cases without opening a disk or loading a driver. The kernel source remains private. The release installers contain the verified signed return; building the public app alone does not generate that driver. Live signed-package qualification is reported separately in [validation](docs/VALIDATION.md).
+Outputs are under `obj/Build/bin/Release`. Offline tests exercise protocol validation and one million reproducible malformed-record cases without opening a disk or loading a driver. Demo/evaluation driver source is documented in [driver/README.md](driver/README.md). The release installers contain the verified signed return; building the public app alone does not generate that driver. Live signed-package qualification is reported separately in [validation](docs/VALIDATION.md).
 
 ## OEM integration and responsible use
 
