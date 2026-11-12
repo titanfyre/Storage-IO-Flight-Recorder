@@ -2,20 +2,27 @@
   "project": "Storage-IO-Flight-Recorder",
   "packages": [
     {
-      "directory": "Storage-IO-Flight-Recorder-CPP-vcpkg",
+      "directory": "packaging/native",
       "central_registry_status": "not_published",
-      "distribution": "GitHub source and downloadable release artifacts"
+      "distribution": "GitHub source and downloadable release artifacts",
+      "source_layout": "Shared native SDK source; registry recipes are kept alongside CMakeLists.txt."
     },
     {
-      "directory": "Storage-IO-Flight-Recorder-CPP-conan",
+      "directory": "packaging/native",
       "central_registry_status": "not_published",
-      "distribution": "GitHub source and downloadable release artifacts"
+      "distribution": "GitHub source and downloadable release artifacts",
+      "source_layout": "Shared native SDK source; registry recipes are kept alongside CMakeLists.txt."
     },
     {
-      "directory": "Storage-IO-Flight-Recorder-CPP-nuget",
+      "directory": "packaging/native",
       "central_registry_status": "not_published",
-      "distribution": "GitHub source and downloadable release artifacts"
+      "distribution": "GitHub source and downloadable release artifacts",
+      "source_layout": "Shared native SDK source; registry recipes are kept alongside CMakeLists.txt."
     }
   ],
-  "notes": "Registry accounts or community acceptance are separate. No missing language binding is represented as implemented."
+  "notes": "Registry accounts or community acceptance are separate. No missing language binding is represented as implemented.",
+  "native_source_archive": {
+    "url": "https://github.com/titanfyre/Storage-IO-Flight-Recorder/releases/download/sdk-v0.1.1/storage-io-flight-recorder-sdk-0.1.1.tar.gz",
+    "sha256": "53946454ab47eb70bc5b0a9265c4beecfad15681579483e1d52f668b9307404a"
+  }
 }
