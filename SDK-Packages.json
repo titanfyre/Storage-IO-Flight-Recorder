@@ -1,0 +1,21 @@
+{
+  "project": "Storage-IO-Flight-Recorder",
+  "packages": [
+    {
+      "directory": "Storage-IO-Flight-Recorder-CPP-vcpkg",
+      "central_registry_status": "not_published",
+      "distribution": "GitHub source and downloadable release artifacts"
+    },
+    {
+      "directory": "Storage-IO-Flight-Recorder-CPP-conan",
+      "central_registry_status": "not_published",
+      "distribution": "GitHub source and downloadable release artifacts"
+    },
+    {
+      "directory": "Storage-IO-Flight-Recorder-CPP-nuget",
+      "central_registry_status": "not_published",
+      "distribution": "GitHub source and downloadable release artifacts"
+    }
+  ],
+  "notes": "Registry accounts or community acceptance are separate. No missing language binding is represented as implemented."
+}
