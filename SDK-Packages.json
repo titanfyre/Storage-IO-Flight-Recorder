@@ -68,6 +68,14 @@
       "distribution": "Documented native SDK; registry receipt tracked independently"
     },
     {
+      "directory": "Storage-IO-Flight-Recorder-JavaScript-npm",
+      "language": "JavaScript",
+      "registry": "npm",
+      "name": "storage-io-flight-recorder",
+      "version": "1.0.0",
+      "distribution": "Documented native SDK; registry receipt tracked independently"
+    },
+    {
       "directory": "Storage-IO-Flight-Recorder-NET-nuget",
       "language": "NET",
       "registry": "nuget",
