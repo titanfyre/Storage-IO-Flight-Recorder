@@ -6,24 +6,24 @@ Choisis le paquet a installer. Installe son outil habituel (Node.js/npm, Python/
 
 Les SDK natifs sont destines a Windows x64. Java utilise Java22+ (Kotlin passe par le SDK Java). Flutter utilise le SDK Dart ; le chargement de la DLL doit etre configure dans l application. AutoHotInterceptor .NET utilise .NET Framework4.8.
 
-| Paquet | Registre | Disponibilite | Installation / utilisation |
-| --- | --- | --- | --- |
-| `storage-io-flight-recorder` | vcpkg | Registre TitanCSA disponible (configuration ci-dessous) | `vcpkg install storage-io-flight-recorder:x64-windows` |
-| `storage-io-flight-recorder` | Conan | Registre TitanCSA disponible (configuration ci-dessous) | `conan install --requires=storage-io-flight-recorder/0.1.1 -r titancsa --build=missing -s compiler.cppstd=17` |
-| `TitanCSA.StorageIOFlightRecorder.Native` | NuGet | Publie et verifie | `Install-Package TitanCSA.StorageIOFlightRecorder.Native -Version 0.1.1` |
-| `StorageIOFlightRecorder.SDK` | NuGet | Publie et verifie | `dotnet add package StorageIOFlightRecorder.SDK --version 1.0.0` |
-| `storage_io_flight_recorder` | PyPI | Pas encore disponible / validation en cours | Commande prevue apres publication : `python -m pip install storage-io-flight-recorder==1.0.0` |
-| `storage-io-flight-recorder` | Conda | Canal TitanCSA disponible ; acceptation conda-forge encore en attente | `conda install --override-channels -c https://raw.githubusercontent.com/TitanCSA/sdk-packages/089bc73095aa8eda89bacbe10d0b9e58394b0207/conda-channel -c conda-forge storage-io-flight-recorder` |
-| `storage_io_flight_recorder` | crates.io | Publie et verifie | `cargo add storage-io-flight-recorder@1.0.0` |
-| `storage_io_flight_recorder` | npm | Pas encore disponible / validation en cours | Commande prevue apres publication : `npm install storage-io-flight-recorder@1.0.0` |
-| `io.github.titancsa:storage-io-flight-recorder` | Maven Central | Publie et verifie | `io.github.titancsa:storage-io-flight-recorder:1.0.0 (pom.xml / Gradle)` |
-| `com.github.titanfyre:Storage-IO-Flight-Recorder` | JitPack | Publie et verifie | `com.github.titanfyre:Storage-IO-Flight-Recorder:java-sdk-v1.0.0 (avec le depot JitPack)` |
-| `github.com/titanfyre/Storage-IO-Flight-Recorder/Storage-IO-Flight-Recorder-Go-modules` | Go Modules | Publie et verifie | `go get github.com/titanfyre/Storage-IO-Flight-Recorder/Storage-IO-Flight-Recorder-Go-modules@v1.0.0` |
-| `github.com/titanfyre/Storage-IO-Flight-Recorder/Storage-IO-Flight-Recorder-Go-modules` | pkg.go.dev | Publie et verifie | `Documentation : https://pkg.go.dev/github.com/titanfyre/Storage-IO-Flight-Recorder/Storage-IO-Flight-Recorder-Go-modules@v1.0.0` |
-| `storage_io_flight_recorder` | PowerShell Gallery | Publie et verifie | `Install-Module StorageIOFlightRecorder -RequiredVersion 1.0.0 -Scope CurrentUser` |
-| `storage_io_flight_recorder` | pub.dev | Pas encore disponible / validation en cours | Commande prevue apres publication : `dart pub add storage_io_flight_recorder:1.0.0` |
-| `storage_io_flight_recorder` | RubyGems | Publie et verifie | `gem install storage-io-flight-recorder -v 1.0.0` |
-| `storage_io_flight_recorder` | Packagist | Pas encore disponible / validation en cours | Commande prevue apres publication : `composer require titancsa/storage-io-flight-recorder:1.0.0` |
+| Registre | Paquet | Installation / utilisation |
+| --- | --- | --- |
+| vcpkg | `storage-io-flight-recorder` | `vcpkg install storage-io-flight-recorder:x64-windows` |
+| Conan | `storage-io-flight-recorder` | `conan install --requires=storage-io-flight-recorder/0.1.1 -r titancsa --build=missing -s compiler.cppstd=17` |
+| NuGet | `TitanCSA.StorageIOFlightRecorder.Native` | `Install-Package TitanCSA.StorageIOFlightRecorder.Native -Version 0.1.1` |
+| NuGet | `StorageIOFlightRecorder.SDK` | `dotnet add package StorageIOFlightRecorder.SDK --version 1.0.0` |
+| PyPI | `storage_io_flight_recorder` | Commande prevue apres publication : `python -m pip install storage-io-flight-recorder==1.0.0` |
+| Conda | `storage-io-flight-recorder` | `conda install --override-channels -c https://raw.githubusercontent.com/TitanCSA/sdk-packages/089bc73095aa8eda89bacbe10d0b9e58394b0207/conda-channel -c conda-forge storage-io-flight-recorder` (canal TitanCSA) |
+| crates.io | `storage_io_flight_recorder` | `cargo add storage-io-flight-recorder@1.0.0` |
+| npm | `storage_io_flight_recorder` | Commande prevue apres publication : `npm install storage-io-flight-recorder@1.0.0` |
+| Maven Central | `io.github.titancsa:storage-io-flight-recorder` | `io.github.titancsa:storage-io-flight-recorder:1.0.0 (pom.xml / Gradle)` |
+| JitPack | `com.github.titanfyre:Storage-IO-Flight-Recorder` | `com.github.titanfyre:Storage-IO-Flight-Recorder:java-sdk-v1.0.0 (avec le depot JitPack)` |
+| Go Modules | `github.com/titanfyre/Storage-IO-Flight-Recorder/Storage-IO-Flight-Recorder-Go-modules` | `go get github.com/titanfyre/Storage-IO-Flight-Recorder/Storage-IO-Flight-Recorder-Go-modules@v1.0.0` |
+| pkg.go.dev | `github.com/titanfyre/Storage-IO-Flight-Recorder/Storage-IO-Flight-Recorder-Go-modules` | `Documentation : https://pkg.go.dev/github.com/titanfyre/Storage-IO-Flight-Recorder/Storage-IO-Flight-Recorder-Go-modules@v1.0.0` |
+| PowerShell Gallery | `storage_io_flight_recorder` | `Install-Module StorageIOFlightRecorder -RequiredVersion 1.0.0 -Scope CurrentUser` |
+| pub.dev | `storage_io_flight_recorder` | Commande prevue apres publication : `dart pub add storage_io_flight_recorder:1.0.0` |
+| RubyGems | `storage_io_flight_recorder` | `gem install storage-io-flight-recorder -v 1.0.0` |
+| Packagist | `storage_io_flight_recorder` | Commande prevue apres publication : `composer require titancsa/storage-io-flight-recorder:1.0.0` |
 
 ## Configuration vcpkg et Conan
 

@@ -116,24 +116,24 @@ Use only on systems and disposable test media you own or are authorized to admin
 
 Les sources, licences, guides API et exemples sont regroupes dans [le depot SDK dedie](https://github.com/TitanCSA/sdk-packages/tree/main/projects/Storage-IO-Flight-Recorder). Choisis le paquet a installer puis execute sa commande dans son dossier.
 
-| Paquet | Registre | Disponibilite | Installation / utilisation |
-| --- | --- | --- | --- |
-| `storage-io-flight-recorder` | vcpkg | Registre TitanCSA disponible (configuration ci-dessous) | `vcpkg install storage-io-flight-recorder:x64-windows` |
-| `storage-io-flight-recorder` | Conan | Registre TitanCSA disponible (configuration ci-dessous) | `conan install --requires=storage-io-flight-recorder/0.1.1 -r titancsa --build=missing -s compiler.cppstd=17` |
-| `TitanCSA.StorageIOFlightRecorder.Native` | NuGet | Publie et verifie | `Install-Package TitanCSA.StorageIOFlightRecorder.Native -Version 0.1.1` |
-| `StorageIOFlightRecorder.SDK` | NuGet | Publie et verifie | `dotnet add package StorageIOFlightRecorder.SDK --version 1.0.0` |
-| `storage_io_flight_recorder` | PyPI | Pas encore disponible / validation en cours | Commande prevue apres publication : `python -m pip install storage-io-flight-recorder==1.0.0` |
-| `storage-io-flight-recorder` | Conda | Canal TitanCSA disponible ; acceptation conda-forge encore en attente | `conda install --override-channels -c https://raw.githubusercontent.com/TitanCSA/sdk-packages/089bc73095aa8eda89bacbe10d0b9e58394b0207/conda-channel -c conda-forge storage-io-flight-recorder` |
-| `storage_io_flight_recorder` | crates.io | Publie et verifie | `cargo add storage-io-flight-recorder@1.0.0` |
-| `storage_io_flight_recorder` | npm | Pas encore disponible / validation en cours | Commande prevue apres publication : `npm install storage-io-flight-recorder@1.0.0` |
-| `io.github.titancsa:storage-io-flight-recorder` | Maven Central | Publie et verifie | `io.github.titancsa:storage-io-flight-recorder:1.0.0 (pom.xml / Gradle)` |
-| `com.github.titanfyre:Storage-IO-Flight-Recorder` | JitPack | Publie et verifie | `com.github.titanfyre:Storage-IO-Flight-Recorder:java-sdk-v1.0.0 (avec le depot JitPack)` |
-| `github.com/titanfyre/Storage-IO-Flight-Recorder/Storage-IO-Flight-Recorder-Go-modules` | Go Modules | Publie et verifie | `go get github.com/titanfyre/Storage-IO-Flight-Recorder/Storage-IO-Flight-Recorder-Go-modules@v1.0.0` |
-| `github.com/titanfyre/Storage-IO-Flight-Recorder/Storage-IO-Flight-Recorder-Go-modules` | pkg.go.dev | Publie et verifie | `Documentation : https://pkg.go.dev/github.com/titanfyre/Storage-IO-Flight-Recorder/Storage-IO-Flight-Recorder-Go-modules@v1.0.0` |
-| `storage_io_flight_recorder` | PowerShell Gallery | Publie et verifie | `Install-Module StorageIOFlightRecorder -RequiredVersion 1.0.0 -Scope CurrentUser` |
-| `storage_io_flight_recorder` | pub.dev | Pas encore disponible / validation en cours | Commande prevue apres publication : `dart pub add storage_io_flight_recorder:1.0.0` |
-| `storage_io_flight_recorder` | RubyGems | Publie et verifie | `gem install storage-io-flight-recorder -v 1.0.0` |
-| `storage_io_flight_recorder` | Packagist | Pas encore disponible / validation en cours | Commande prevue apres publication : `composer require titancsa/storage-io-flight-recorder:1.0.0` |
+| Registre | Paquet | Installation / utilisation |
+| --- | --- | --- |
+| vcpkg | `storage-io-flight-recorder` | `vcpkg install storage-io-flight-recorder:x64-windows` |
+| Conan | `storage-io-flight-recorder` | `conan install --requires=storage-io-flight-recorder/0.1.1 -r titancsa --build=missing -s compiler.cppstd=17` |
+| NuGet | `TitanCSA.StorageIOFlightRecorder.Native` | `Install-Package TitanCSA.StorageIOFlightRecorder.Native -Version 0.1.1` |
+| NuGet | `StorageIOFlightRecorder.SDK` | `dotnet add package StorageIOFlightRecorder.SDK --version 1.0.0` |
+| PyPI | `storage_io_flight_recorder` | Commande prevue apres publication : `python -m pip install storage-io-flight-recorder==1.0.0` |
+| Conda | `storage-io-flight-recorder` | `conda install --override-channels -c https://raw.githubusercontent.com/TitanCSA/sdk-packages/089bc73095aa8eda89bacbe10d0b9e58394b0207/conda-channel -c conda-forge storage-io-flight-recorder` (canal TitanCSA) |
+| crates.io | `storage_io_flight_recorder` | `cargo add storage-io-flight-recorder@1.0.0` |
+| npm | `storage_io_flight_recorder` | Commande prevue apres publication : `npm install storage-io-flight-recorder@1.0.0` |
+| Maven Central | `io.github.titancsa:storage-io-flight-recorder` | `io.github.titancsa:storage-io-flight-recorder:1.0.0 (pom.xml / Gradle)` |
+| JitPack | `com.github.titanfyre:Storage-IO-Flight-Recorder` | `com.github.titanfyre:Storage-IO-Flight-Recorder:java-sdk-v1.0.0 (avec le depot JitPack)` |
+| Go Modules | `github.com/titanfyre/Storage-IO-Flight-Recorder/Storage-IO-Flight-Recorder-Go-modules` | `go get github.com/titanfyre/Storage-IO-Flight-Recorder/Storage-IO-Flight-Recorder-Go-modules@v1.0.0` |
+| pkg.go.dev | `github.com/titanfyre/Storage-IO-Flight-Recorder/Storage-IO-Flight-Recorder-Go-modules` | `Documentation : https://pkg.go.dev/github.com/titanfyre/Storage-IO-Flight-Recorder/Storage-IO-Flight-Recorder-Go-modules@v1.0.0` |
+| PowerShell Gallery | `storage_io_flight_recorder` | `Install-Module StorageIOFlightRecorder -RequiredVersion 1.0.0 -Scope CurrentUser` |
+| pub.dev | `storage_io_flight_recorder` | Commande prevue apres publication : `dart pub add storage_io_flight_recorder:1.0.0` |
+| RubyGems | `storage_io_flight_recorder` | `gem install storage-io-flight-recorder -v 1.0.0` |
+| Packagist | `storage_io_flight_recorder` | Commande prevue apres publication : `composer require titancsa/storage-io-flight-recorder:1.0.0` |
 
 Pour vcpkg et Conan, configure d abord le registre TitanCSA avec [le guide complet](https://github.com/TitanCSA/sdk-packages/tree/main/projects/Storage-IO-Flight-Recorder/README.md). Le guide explique aussi Maven/Gradle, les prerequis et le chargement des DLL. Les pilotes/applications du produit sont installes separement. Les commandes marquees prevues ne sont pas encore disponibles.
 
