@@ -1,0 +1,18 @@
+[build-system]
+requires=["setuptools>=77","wheel>=0.43"]
+build-backend="setuptools.build_meta"
+[project]
+name="storage-io-flight-recorder"
+version="1.0.0"
+description="Windows x64 Storage-IO-Flight-Recorder direct SDK"
+requires-python=">=3.10"
+license="MIT"
+readme="README.md"
+[project.urls]
+Repository="https://github.com/titanfyre/Storage-IO-Flight-Recorder"
+[tool.setuptools]
+packages=["storage_io_flight_recorder"]
+[tool.setuptools.package-data]
+storage_io_flight_recorder=["*.dll"]
+[tool.setuptools.data-files]
+"share/storage-io-flight-recorder/docs"=["docs/*","LICENSE"]
