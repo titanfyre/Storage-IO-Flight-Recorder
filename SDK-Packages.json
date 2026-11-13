@@ -203,7 +203,7 @@
       "api_prefix": "storage_io_flight_recorder_json_"
     },
     "JavaScript/npm": {
-      "status": "awaiting_browser_publication_authentication",
+      "status": "registry_publication_requires_action",
       "name": "storage-io-flight-recorder",
       "version": "1.0.0",
       "directory": "Storage-IO-Flight-Recorder-JavaScript-npm",
