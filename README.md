@@ -110,3 +110,34 @@ For **paid scoped QA/integration pilots, OEM redistribution rights, a branded dr
 Public app/SDK/example/installer sources use the [MIT license](LICENSE). Kernel binary evaluation and production redistribution have separate terms. This evaluation build has no enforced timer, online activation or payment system. Microsoft signing alone is not WHQL certification, product endorsement or evidence of universal reliability.
 
 Use only on systems and disposable test media you own or are authorized to administer. The project is intended for lawful diagnostics and software integration. You remain responsible for your deployment and use; the applicable licenses describe the terms and warranty limitations.
+
+<!-- central-sdk-packages:start -->
+## SDK : langages et installation
+
+Les sources, licences, guides API et exemples des SDK sont regroupes dans [le depot dedie](https://github.com/TitanCSA/sdk-packages/tree/main/projects/Storage-IO-Flight-Recorder). Choisis ton langage ci-dessous, puis execute sa commande dans le dossier de ton application.
+
+| Langage / registre | Disponibilite | Installation / utilisation |
+| --- | --- | --- |
+| C++ / vcpkg | Registre TitanCSA disponible (configuration ci-dessous) | `vcpkg install storage-io-flight-recorder:x64-windows` |
+| C++ / Conan | Registre TitanCSA disponible (configuration ci-dessous) | `conan install --requires=storage-io-flight-recorder/0.1.1 -r titancsa --build=missing -s compiler.cppstd=17` |
+| C++ / NuGet natif | Publie et verifie | `Install-Package TitanCSA.StorageIOFlightRecorder.Native -Version 0.1.1` |
+| C# / .NET | Publie et verifie | `dotnet add package StorageIOFlightRecorder.SDK --version 1.0.0` |
+| Python / pip | Pas encore disponible / validation en cours | Commande prevue apres publication : `python -m pip install storage-io-flight-recorder==1.0.0` |
+| Python / Conda | Canal TitanCSA disponible ; acceptation conda-forge encore en attente | `conda install --override-channels -c https://raw.githubusercontent.com/TitanCSA/sdk-packages/089bc73095aa8eda89bacbe10d0b9e58394b0207/conda-channel -c conda-forge storage-io-flight-recorder` |
+| Rust / Cargo | Publie et verifie | `cargo add storage-io-flight-recorder@1.0.0` |
+| JavaScript et TypeScript / npm | Pas encore disponible / validation en cours | Commande prevue apres publication : `npm install storage-io-flight-recorder@1.0.0` |
+| Java et Kotlin / Maven Central | Publie et verifie | `io.github.titancsa:storage-io-flight-recorder:1.0.0 (pom.xml / Gradle)` |
+| Java et Kotlin / JitPack | Publie et verifie | `com.github.titanfyre:Storage-IO-Flight-Recorder:java-sdk-v1.0.0 (avec le depot JitPack)` |
+| Go / Go Modules | Publie et verifie | `go get github.com/titanfyre/Storage-IO-Flight-Recorder/Storage-IO-Flight-Recorder-Go-modules@v1.0.0` |
+| Go / pkg.go.dev | Publie et verifie | `Documentation : https://pkg.go.dev/github.com/titanfyre/Storage-IO-Flight-Recorder/Storage-IO-Flight-Recorder-Go-modules@v1.0.0` |
+| PowerShell / Gallery | Publie et verifie | `Install-Module StorageIOFlightRecorder -RequiredVersion 1.0.0 -Scope CurrentUser` |
+| Dart et Flutter / pub.dev | Pas encore disponible / validation en cours | Commande prevue apres publication : `dart pub add storage_io_flight_recorder:1.0.0` |
+| Ruby / RubyGems | Publie et verifie | `gem install storage-io-flight-recorder -v 1.0.0` |
+| PHP / Composer | Pas encore disponible / validation en cours | Commande prevue apres publication : `composer require titancsa/storage-io-flight-recorder:1.0.0` |
+
+Pour vcpkg et Conan, configure d abord le registre TitanCSA avec [ces instructions](https://github.com/TitanCSA/sdk-packages/tree/main/projects/Storage-IO-Flight-Recorder/README.md#c-et-c). Pour Java/Kotlin, le guide donne le bloc Maven/Gradle a ajouter. Windows x64 est requis pour les bindings natifs ; les pilotes/applications restent a installer separement.
+
+Les commandes indiquees comme prevues ne sont pas encore disponibles. Les versions Go/JitPack existantes utilisent les anciens tags conserves ; aucun ancien import Go n est renomme.
+
+[Guide complet, prerequis et exemples](https://github.com/TitanCSA/sdk-packages/tree/main/projects/Storage-IO-Flight-Recorder/README.md).
+<!-- central-sdk-packages:end -->
