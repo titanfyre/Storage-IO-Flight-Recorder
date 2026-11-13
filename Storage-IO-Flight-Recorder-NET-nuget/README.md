@@ -1,8 +1,6 @@
 # Storage-IO-Flight-Recorder .NET8 SDK
 
-Package ID `StorageIOFlightRecorder.SDK`. NuGet upload remains on hold at owner request.
-
-```csharp
+Package ID `StorageIOFlightRecorder.SDK`. ```csharp
 using var client=new TitanCSA.Products.StorageIOFlightRecorder.Client();
 string statusJson=client.Call("status", "{}");
 ```
