@@ -239,13 +239,13 @@
       "api_prefix": "storage_io_flight_recorder_json_"
     },
     "Dart/pub-dev": {
-      "status": "built_fixture_and_production_verified",
+      "status": "registry_rate_limited_retry_later",
       "name": "storage_io_flight_recorder",
       "version": "1.0.0",
       "directory": "Storage-IO-Flight-Recorder-Dart-pub-dev",
       "registry_published": false,
       "documentation_bundled": true,
-      "url": null,
+      "url": "https://pub.dev/packages/storage_io_flight_recorder",
       "public_consumer_verified": false,
       "module": "storage_io_flight_recorder",
       "dll_name": "StorageIOFlightRecorderJsonSDK.dll",
