@@ -239,7 +239,7 @@
       "api_prefix": "storage_io_flight_recorder_json_"
     },
     "Dart/pub-dev": {
-      "status": "registry_rate_limited_retry_later",
+      "status": "submitted_requires_public_verification",
       "name": "storage_io_flight_recorder",
       "version": "1.0.0",
       "directory": "Storage-IO-Flight-Recorder-Dart-pub-dev",
