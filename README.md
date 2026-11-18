@@ -122,7 +122,7 @@ Les sources, licences, guides API et exemples sont regroupes dans [le depot SDK 
 | PowerShell Gallery | `StorageIOFlightRecorder` | `Install-Module StorageIOFlightRecorder -RequiredVersion 1.0.0 -Scope CurrentUser` |
 | pub.dev | `storage_io_flight_recorder` | Commande prevue apres publication : `dart pub add storage_io_flight_recorder:1.0.0` |
 | RubyGems | `storage-io-flight-recorder` | `gem install storage-io-flight-recorder -v 1.0.0` |
-| Packagist | `titancsa/storage-io-flight-recorder` | Commande prevue apres publication : `composer require titancsa/storage-io-flight-recorder:1.0.0` |
+| Packagist | `titancsa/storage-io-flight-recorder` | `composer require titancsa/storage-io-flight-recorder:1.0.0` |
 
 Pour vcpkg et Conan, configure d abord le registre TitanCSA avec [le guide complet](https://github.com/TitanCSA/sdk-packages/tree/main/projects/Storage-IO-Flight-Recorder/README.md). Le guide explique aussi Maven/Gradle, les prerequis et le chargement des DLL. Les pilotes/applications du produit sont installes separement. Les commandes marquees prevues ne sont pas encore disponibles.
 
