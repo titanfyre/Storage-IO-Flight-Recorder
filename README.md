@@ -1,5 +1,16 @@
 # Storage I/O Flight Recorder - Windows Kernel Disk Filter & C++ SDK
 
+<!-- full-version-contact:start -->
+> [!IMPORTANT]
+> **Full version and commercial licensing**
+>
+> **Discord username: `titancsa`**
+>
+> Open Discord, choose **Friends > Add Friend**, enter **`titancsa`**, then send a direct message. Mention **Storage I/O Flight Recorder** and ask about the **full / production version, commercial use or OEM redistribution**.
+>
+> Include your intended use and deployment size to discuss pricing, availability and the appropriate licensing / access instructions.
+<!-- full-version-contact:end -->
+
 **Explain raw scratch-disk I/O completions with bounded metadata, exact NTSTATUS and a small native integration API.**
 
 Built for virtual-storage QA, raw block-workload regression tests and OEM diagnostic integrations. The KMDF upper filter timestamps read and write requests at its own dispatch/completion boundary. The native Windows viewer displays completions, in-flight counts, errors and overwritten-log counts; explicitly export the visible metadata to CSV.
@@ -131,13 +142,4 @@ Les anciens imports Go et versions JitPack gardent leurs tags. Pour les ancienne
 
 ## Commercial integration and support
 
-<!-- full-version-contact:start -->
-> [!IMPORTANT]
-> **Full version and commercial licensing**
->
-> **Discord username: `titancsa`**
->
-> Open Discord, choose **Friends > Add Friend**, enter **`titancsa`**, then send a direct message. Mention **Storage I/O Flight Recorder** and ask about the **full / production version, commercial use or OEM redistribution**.
->
-> Include your intended use and deployment size to discuss pricing, availability and the appropriate licensing / access instructions.
-<!-- full-version-contact:end -->
+
