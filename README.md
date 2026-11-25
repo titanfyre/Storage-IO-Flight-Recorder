@@ -1,5 +1,11 @@
 # Storage I/O Flight Recorder - Windows Kernel Disk Filter & C++ SDK
 
+<!-- simple-start:start -->
+See when reads and writes finish on a test disk.
+
+**Start here.** Use a disposable lab disk and run the example to collect a report.
+<!-- simple-start:end -->
+
 <!-- full-version-contact:start -->
 > [!IMPORTANT]
 > **Full version and commercial licensing**
@@ -141,5 +147,3 @@ Les anciens imports Go et versions JitPack gardent leurs tags. Pour les ancienne
 <!-- central-sdk-packages:end -->
 
 ## Commercial integration and support
-
-
